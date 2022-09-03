@@ -1,0 +1,21 @@
+.profile-info {
+    color: var(--text-color-profile);
+    display: grid;
+    row-gap: 16px;
+    grid-column-gap: 18px;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+    "profile-info__title profile-info__edit-button"
+    "profile-info__subtitle profile-info__subtitle"
+    ;
+}
+
+
+@media screen and (max-width: 767px) {
+    .profile-info {
+        margin: 25px auto 0;
+        grid-column-gap: 10px;
+        row-gap: 14px;
+        text-align: center;
+    }
+}

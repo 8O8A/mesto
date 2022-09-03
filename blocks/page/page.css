@@ -1,6 +1,6 @@
 .page {
     position: relative;
-    background-color: #000000;
+    background-color: var(--background-color);
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
