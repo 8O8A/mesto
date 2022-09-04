@@ -6,7 +6,7 @@
     grid-template-columns: 1fr auto;
     grid-template-areas:
     "profile-info__title profile-info__edit-button"
-    "profile-info__subtitle profile-info__subtitle"
+    "profile-info__subtitle ."
     ;
 }
 

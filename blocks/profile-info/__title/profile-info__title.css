@@ -6,9 +6,6 @@
     line-height: 114%;
     margin: 0;
     align-self: end;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     max-width: 490px;
     grid-area: profile-info__title;
 }

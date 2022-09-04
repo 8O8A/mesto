@@ -1,16 +1,15 @@
-.profile-info__subtitle {
+.footer__copyright {
+    color: var(--text-color-copyright);
     font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 122%;
     margin: 0;
-    max-width: 540px;
-    grid-area: profile-info__subtitle;
 }
 
 @media screen and (max-width: 767px) {
-    .profile-info__subtitle {
+    .footer__copyright {
         font-size: 14px;
         line-height: 121%;
     }
