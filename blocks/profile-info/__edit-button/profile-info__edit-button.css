@@ -1,4 +1,5 @@
 .profile-info__edit-button {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-self: center;

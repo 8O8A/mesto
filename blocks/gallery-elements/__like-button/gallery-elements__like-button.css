@@ -1,4 +1,5 @@
 .gallery-elements__like-button {
+    cursor: pointer;
     background-image: url('../../../images/like-image.svg');
     background-position: center;
     background-repeat: no-repeat;

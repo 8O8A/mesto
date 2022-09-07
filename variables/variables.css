@@ -4,4 +4,9 @@
     --text-color-elements: #000000;
     --background-color-elements: #fff;
     --text-color-copyright: #545454;
+
+    --text-color-form: #000000;
+    --background-color-form: #fff;
+    --background-color-form-save-button: #000000;
+    --text-color-form-save-button: #fff;
 }

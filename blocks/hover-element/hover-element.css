@@ -1,0 +1,4 @@
+.hover-element:hover {
+    opacity: .6;
+    transition: .5s;
+}

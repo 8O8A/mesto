@@ -10,10 +10,15 @@
     ;
 }
 
+@media screen and (max-width: 1023px) {
+    .profile-info {
+        text-align: center;
+    }
+}
 
 @media screen and (max-width: 767px) {
     .profile-info {
-        margin: 25px auto 0;
+        margin: 22px auto 0;
         grid-column-gap: 10px;
         row-gap: 14px;
         text-align: center;
