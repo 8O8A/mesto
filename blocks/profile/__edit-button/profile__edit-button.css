@@ -1,4 +1,4 @@
-.profile-info__edit-button {
+.profile__edit-button {
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .profile-info__edit-button {
+    .profile__edit-button {
         width: 18px;
         height: 18px;
     }

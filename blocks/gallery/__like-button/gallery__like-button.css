@@ -1,4 +1,4 @@
-.gallery-elements__like-button {
+.gallery__like-button {
     cursor: pointer;
     background-image: url('../../../images/like-image.svg');
     background-position: center;
@@ -8,4 +8,9 @@
     border: 0;
     background-color: transparent;
     padding: 0;
+}
+
+.gallery__like-button:hover {
+    opacity: .5;
+    transition: .5s;
 }

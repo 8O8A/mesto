@@ -1,4 +1,4 @@
-.profile-info {
+.profile__info {
     color: var(--text-color-profile);
     display: grid;
     row-gap: 16px;
@@ -10,13 +10,13 @@
 }
 
 @media screen and (max-width: 1023px) {
-    .profile-info {
+    .profile__info {
         text-align: center;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .profile-info {
+    .profile__info {
         margin: 22px auto 0;
         grid-column-gap: 10px;
         row-gap: 14px;

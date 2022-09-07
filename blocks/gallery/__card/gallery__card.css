@@ -1,4 +1,4 @@
-.gallery-elements__card {
+.gallery__card {
     background-color: var(--background-color-elements);
     border-radius: 10px;
     overflow: hidden;

@@ -1,29 +1,30 @@
 @import url('../vendor/normalize.css');
 @import url('../vendor/fonts.css');
-@import url('../variables/variables.css');
+@import url('../vendor/variables.css');
 @import url('../blocks/hover-element/hover-element.css');
 @import url('../blocks/text-overflow/text-overflow.css');
 @import url('../blocks/page/page.css');
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
-@import url('../blocks/header/__line/header__line.css');
 @import url('../blocks/content/content.css');
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
-@import url('../blocks/profile-info/profile-info.css');
-@import url('../blocks/profile-info/__title/profile-info__title.css');
-@import url('../blocks/profile-info/__subtitle/profile-info__subtitle.css');
-@import url('../blocks/profile-info/__edit-button/profile-info__edit-button.css');
+@import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__title/profile__title.css');
+@import url('../blocks/profile/__subtitle/profile__subtitle.css');
+@import url('../blocks/profile/__edit-button/profile__edit-button.css');
 @import url('../blocks/profile/__add-button/profile__add-button.css');
+
 @import url('../blocks/gallery/gallery.css');
-@import url('../blocks/gallery-elements/gallery-elements.css');
-@import url('../blocks/gallery-elements/__card/gallery-elements__card.css');
-@import url('../blocks/gallery-elements/__image/gallery-elements__image.css');
-@import url('../blocks/gallery-elements/__discription/gallery-elements__discription.css');
-@import url('../blocks/gallery-elements/__title/gallery-elements__title.css');
-@import url('../blocks/gallery-elements/__like/gallery-elements__like.css');
-@import url('../blocks/gallery-elements/__like-button/gallery-elements__like-button.css');
-@import url('../blocks/gallery-elements/__like-button/_active/gallery-elements__like-button_active.css');
+@import url('../blocks/gallery/__elements/gallery__elements.css');
+@import url('../blocks/gallery/__card/gallery__card.css');
+@import url('../blocks/gallery/__image/gallery__image.css');
+@import url('../blocks/gallery/__discription/gallery__discription.css');
+@import url('../blocks/gallery/__title/gallery__title.css');
+/* @import url('../blocks/gallery/__like/gallery__like.css'); */
+@import url('../blocks/gallery/__like-button/gallery__like-button.css');
+@import url('../blocks/gallery/__like-button/_active/gallery__like-button_active.css');
+
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
 @import url('../blocks/overlay/overlay.css');

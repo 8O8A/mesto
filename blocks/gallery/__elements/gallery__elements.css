@@ -1,4 +1,4 @@
-.gallery-elements {
+.gallery__elements {
     display: grid;
     grid-template-columns: repeat(3, minmax(282px, auto));
     grid-template-rows: repeat(auto-fit, minmax(361px, auto));
@@ -11,13 +11,13 @@
 }
 
 @media screen and (max-width: 1023px) and (min-width:768px) {
-    .gallery-elements {
+    .gallery__elements {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media screen and (max-width: 767px) {
-    .gallery-elements {
+    .gallery__elements {
         grid-template-columns: 1fr;
     }
 }

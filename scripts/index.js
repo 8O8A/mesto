@@ -1,9 +1,9 @@
 const overlayElement = document.querySelector('.overlay');
 
 const closePopupButton = overlayElement.querySelector('.popup__close-button');
-const openEditButton = document.querySelector('.profile-info__edit-button'); //кнопка "Редактировать" профиль
-const profileName = document.querySelector('.profile-info__title'); //имя пользователя в профиле
-const profileAbout = document.querySelector('.profile-info__subtitle'); //род деятельности пользователя в профиле
+const openEditButton = document.querySelector('.profile__edit-button'); //кнопка "Редактировать" профиль
+const profileName = document.querySelector('.profile__title'); //имя пользователя в профиле
+const profileAbout = document.querySelector('.profile__subtitle'); //род деятельности пользователя в профиле
 
 const popupName = document.getElementById('form-name'); //имя пользователя в popup'e
 const popupAbout = document.getElementById('form-about'); //род деятельности пользователя в popup'e
@@ -45,9 +45,9 @@ popupSaveButton.addEventListener('click', () => {
 })
 
 // Ставим лайки фотографиям
-const photoLike = document.querySelectorAll('.gallery-elements__like-button');
+const photoLike = document.querySelectorAll('.gallery__like-button');
     for (let i=0; i < photoLike.length; i = i + 1) {
         photoLike[i].addEventListener('click', () => {
-            photoLike[i].classList.toggle('gallery-elements__like-button_active');
+            photoLike[i].classList.toggle('gallery__like-button_active');
         });
     }
