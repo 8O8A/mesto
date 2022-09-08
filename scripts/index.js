@@ -7,42 +7,59 @@ const profileAbout = document.querySelector('.profile__subtitle'); //род де
 
 const popupName = document.getElementById('form-name'); //имя пользователя в popup'e
 const popupAbout = document.getElementById('form-about'); //род деятельности пользователя в popup'e
-const popupSaveButton = overlayPopup.querySelector('.popup__save-button'); //кнопка "Сохранить" в popup'e
 
 
-// функция открытия и закрытия PopUp'a
-function formToggle() {
-    overlayPopup.classList.toggle('popup_opened');
+//функция проверки есть ли у popup'a класс popup_opened
+// function formToggle() {
+//     if (!document.querySelector('.popup').classList.contains('popup_opened')) {
+//         overlayPopup.classList.add('popup_opened');
+//     } else {
+//         overlayPopup.classList.remove('popup_opened');
+//     }
+// }
+
+// // функция открытия и закрытия PopUp'a
+// function formToggle() {
+//     overlayPopup.classList.toggle('popup_opened');
+// }
+
+
+//добавляем класс к popup'y
+function openPopup () {
+    overlayPopup.classList.add('popup_opened');
 }
 
+//удаляем класс у popup'а
+function closePopup () {
+    overlayPopup.classList.remove('popup_opened');
+}
 
-
-// открываем PopUp'a со значениями "Имя" и "О себе" из профиля
-openEditButton.addEventListener('click', () => {
-    popupName.value = profileName.textContent;
-    popupAbout.value = profileAbout.textContent;
-    formToggle();
-});
-
-// закрываем PopUp'a
-closePopupButton.addEventListener('click', () => {
-    formToggle();
-});
-
+//функция отправки данных из popup'a в профиль
 function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = popupName.value;
     profileAbout.textContent = popupAbout.value;
+    closePopup ();
 }
 
 overlayPopup.addEventListener('submit', formSubmitHandler);
 
 
-
-// сохраняем изменения в popup и закрываем
-popupSaveButton.addEventListener('click', () => {
-    formToggle();
+//открываем PopUp
+openEditButton.addEventListener('click', () => {
+    // formToggle();
+    popupName.value = profileName.textContent;
+    popupAbout.value = profileAbout.textContent;
+    openPopup ();
 })
+
+// закрываем PopUp
+closePopupButton.addEventListener('click', () => {
+    // formToggle();
+    closePopup ();
+})
+
+
 
 // Ставим лайки фотографиям
 // const photoLike = document.querySelectorAll('.gallery__like-button');
