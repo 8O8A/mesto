@@ -5,8 +5,8 @@
     padding: 0;
     border: 2px solid #fff;
     border-radius: 2px;
-    background-color: var(--background-color);
-    background-image: url('../../../images/profile-add-button.png');
+    background-color: rgb(0, 0, 0, 1);
+    background-image: url('../../../images/profile-add-button.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 22px;

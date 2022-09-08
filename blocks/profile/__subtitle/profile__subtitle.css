@@ -5,7 +5,7 @@
     font-size: 18px;
     line-height: 122%;
     margin: 0;
-    max-width: 460px;
+    max-width: 336px;
     grid-area: profile-info__subtitle;
 }
 
@@ -13,5 +13,6 @@
     .profile__subtitle {
         font-size: 14px;
         line-height: 121%;
+        max-width: 282px;
     }
 }
