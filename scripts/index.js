@@ -5,8 +5,8 @@ const openEditButton = document.querySelector('.profile__edit-button'); //кно
 const profileName = document.querySelector('.profile__title'); //имя пользователя в профиле
 const profileAbout = document.querySelector('.profile__subtitle'); //род деятельности пользователя в профиле
 
-const popupName = document.getElementById('form-name'); //имя пользователя в popup'e
-const popupAbout = document.getElementById('form-about'); //род деятельности пользователя в popup'e
+const popupName = document.querySelector('.popup__input-field_type_name'); //имя пользователя в popup'e
+const popupAbout = document.querySelector('.popup__input-field_type_about'); //род деятельности пользователя в popup'e
 
 
 //функция проверки есть ли у popup'a класс popup_opened

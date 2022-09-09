@@ -6,19 +6,20 @@
     grid-template-columns: 1fr auto;
     grid-template-areas:
     "profile-info__title profile-info__edit-button"
-    "profile-info__subtitle .";
+    "profile-info__subtitle profile-info__subtitle";
 }
 
 @media screen and (max-width: 1023px) {
     .profile__info {
         text-align: center;
+        justify-items: center;
     }
 }
 
 @media screen and (max-width: 767px) {
     .profile__info {
-        margin: 22px auto 0;
+        margin: 26px auto 0;
         grid-column-gap: 10px;
-        row-gap: 14px;
+        row-gap: 8px;
     }
 }
