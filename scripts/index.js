@@ -58,13 +58,3 @@ closePopupButton.addEventListener('click', () => {
     // formToggle();
     closePopup ();
 })
-
-
-
-// Ставим лайки фотографиям
-// const photoLike = document.querySelectorAll('.gallery__like-button');
-//     for (let i=0; i < photoLike.length; i = i + 1) {
-//         photoLike[i].addEventListener('click', () => {
-//             photoLike[i].classList.toggle('gallery__like-button_active');
-//         });
-//     }
