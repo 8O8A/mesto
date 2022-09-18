@@ -25,7 +25,8 @@
                 <div class="profile__info">
                     <h1 class="profile__title text-overflow">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle text-overflow">Исследователь океана</p>
-                    <button class="profile__edit-button hover-element" type="button" aria-label="редактировать"></button>
+                    <button class="profile__edit-button hover-element" type="button"
+                        aria-label="редактировать"></button>
                 </div>
                 <button class="profile__add-button hover-element" type="button" aria-label="добавить"></button>
             </section>
@@ -38,24 +39,50 @@
         <footer class="footer">
             <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
         </footer>
-        <section class="popup">
-            <div class="popup__container">
-                <button class="popup__close-button hover-element" type="button" aria-label="закрыть"></button>
-                <form class="popup__form" name="popupForm">
-                    <h2 class="popup__form-title">Редактировать профиль</h2>
-                    <fieldset class="popup__form-table">
-                        <label class="popup__input">
-                            <input class="popup__input-field popup__input-field_type_name" type="text"
-                                value="Жак-Ив Кусто" name="popupName">
-                        </label>
-                        <label class="popup__input">
-                            <input class="popup__input-field popup__input-field_type_about" type="text"
-                                value="Исследователь океана" name="popupAbout">
-                        </label>
-                    </fieldset>
-                    <button class="popup__save-button" type="submit">Сохранить</button>
-                </form>
+        <section class="popups">
+
+            <!-- форма редактирования профиля -->
+            <div class="popup popup_type-edit">
+                <div class="popup__container">
+                    <button class="popup__close-button hover-element" type="button" aria-label="закрыть"></button>
+                    <form class="popup__form" name="popupForm">
+                        <h2 class="popup__form-title">Редактировать профиль</h2>
+                        <fieldset class="popup__form-table">
+                            <label class="popup__input">
+                                <input class="popup__input-field popup__input-field_type_name" type="text"
+                                    value="Жак-Ив Кусто" name="popupName">
+                            </label>
+                            <label class="popup__input">
+                                <input class="popup__input-field popup__input-field_type_about" type="text"
+                                    value="Исследователь океана" name="popupAbout">
+                            </label>
+                        </fieldset>
+                        <button class="popup__save-button" type="submit">Сохранить</button>
+                    </form>
+                </div>
             </div>
+
+            <!-- форма добавления фотографии -->
+            <div class="popup popup_type-add">
+                <div class="popup__container">
+                    <button class="popup__close-button hover-element" type="button" aria-label="закрыть"></button>
+                    <form class="popup__form" name="popupForm">
+                        <h2 class="popup__form-title">Новое место</h2>
+                        <fieldset class="popup__form-table">
+                            <label class="popup__input">
+                                <input class="popup__input-field popup__input-field_type_card-name" placeholder="Название" type="text"
+                                    value name="popupCardName">
+                            </label>
+                            <label class="popup__input">
+                                <input class="popup__input-field popup__input-field_type_card-link" placeholder="Ссылка на картинку" type="url"
+                                    value name="popupCardLink">
+                            </label>
+                        </fieldset>
+                        <button class="popup__save-button" type="submit">Создать</button>
+                    </form>
+                </div>
+            </div>
+
         </section>
         <template class="gallery-template">
             <li class="gallery__card">
@@ -70,7 +97,7 @@
             </li>
         </template>
     </div>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/test-popup.js"></script>
     <script src="./scripts/gallery-template.js"></script>
 </body>
 

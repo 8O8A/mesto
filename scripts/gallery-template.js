@@ -44,8 +44,8 @@ render()
 // Ставим лайки фотографиям
 const photoLike = document.querySelectorAll('.gallery__like-button');
 photoLike.forEach(function (item) {
-    item.addEventListener('click', function (like) {
-        like.target.classList.toggle('gallery__like-button_active');
+    item.addEventListener('click', function (event) {
+        event.target.classList.toggle('gallery__like-button_active');
     });
 });
 

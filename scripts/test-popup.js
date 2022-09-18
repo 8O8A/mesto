@@ -1,8 +1,8 @@
 const overlayPopup = document.querySelector('.popup');
-//new
-const popupTitle = overlayPopup.querySelector('.popup_type-edit');
-const popupAdd = overlayPopup.querySelector('.popup_type-add');
-//
+
+const popupTitle = document.querySelector('.popup_type-edit');
+const popupAddPhoto = document.querySelector('.popup_type-add');
+
 const closePopupButton = overlayPopup.querySelector('.popup__close-button');
 const openEditButton = document.querySelector('.profile__edit-button'); //кнопка "Редактировать" профиль
 const profileName = document.querySelector('.profile__title'); //имя пользователя в профиле
@@ -28,12 +28,12 @@ const popupAbout = document.querySelector('.popup__input-field_type_about'); //�
 
 
 //добавляем класс к popup'y
-function openPopup () {
+const openCommonPopups = function openPopup () {
     overlayPopup.classList.add('popup_opened');
 }
 
 //удаляем класс у popup'а
-function closePopup () {
+const closeCommonPopups = function closePopup () {
     overlayPopup.classList.remove('popup_opened');
 }
 
@@ -42,7 +42,7 @@ function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = popupName.value;
     profileAbout.textContent = popupAbout.value;
-    closePopup ();
+    closeCommonPopups (popupTitle);
 }
 
 overlayPopup.addEventListener('submit', formSubmitHandler);
@@ -53,16 +53,18 @@ openEditButton.addEventListener('click', () => {
     // formToggle();
     popupName.value = profileName.textContent;
     popupAbout.value = profileAbout.textContent;
-    openPopup ();
+    openCommonPopups (popupTitle);
+    console.log(popupTitle);
 })
 
 // закрываем PopUp
 closePopupButton.addEventListener('click', () => {
     // formToggle();
-    closePopup ();
+    closeCommonPopups (popupTitle);
 })
 
 //открываем popup добавления картинки
-openAddButton.addEventListener('click', () => {
-    openPopup();
+openAddButton.addEventListener('click', function() {
+    openCommonPopups (popupAddPhoto);
+    console.log(popupAddPhoto);
 })
