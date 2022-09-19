@@ -1,9 +1,9 @@
-const overlayPopup = document.querySelector('.popup');
+// const overlayPopup = document.querySelector('.popup');
 
-const popupTitle = document.querySelector('.popup_type-edit');
-const popupAddPhoto = document.querySelector('.popup_type-add');
-
-const closePopupButton = overlayPopup.querySelector('.popup__close-button');
+const popupTitle = document.querySelector('.popup_type-edit'); //popup Профиля
+const popupAdd = document.querySelector('.popup_type-add');    //popup Добавления фотографии
+const popupForm = document.querySelector('.popup__form');
+const closePopupButton = document.querySelector('.popup__close-button');
 const openEditButton = document.querySelector('.profile__edit-button'); //кнопка "Редактировать" профиль
 const profileName = document.querySelector('.profile__title'); //имя пользователя в профиле
 const profileAbout = document.querySelector('.profile__subtitle'); //род деятельности пользователя в профиле
@@ -28,43 +28,40 @@ const popupAbout = document.querySelector('.popup__input-field_type_about'); //�
 
 
 //добавляем класс к popup'y
-const openCommonPopups = function openPopup () {
-    overlayPopup.classList.add('popup_opened');
+function openPopup (popup) {
+    popup.classList.add('popup_opened');
 }
 
 //удаляем класс у popup'а
-const closeCommonPopups = function closePopup () {
-    overlayPopup.classList.remove('popup_opened');
+function closePopup (popup) {
+    popup.classList.remove('popup_opened');
 }
+
+//открываем PopUp профиля
+openEditButton.addEventListener('click', () => {
+    // formToggle();
+    popupName.value = profileName.textContent;
+    popupAbout.value = profileAbout.textContent;
+    openPopup (popupTitle);
+})
+
+//открываем popup добавления картинки
+openAddButton.addEventListener('click', () => {
+    openPopup(popupAdd);
+})
+
+// закрываем PopUp
+closePopupButton.addEventListener('click', () => {
+    // formToggle();
+    closePopup (popupTitle);
+})
 
 //функция отправки данных из popup'a в профиль
 function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = popupName.value;
     profileAbout.textContent = popupAbout.value;
-    closeCommonPopups (popupTitle);
+    closePopup (popupTitle);
 }
 
-overlayPopup.addEventListener('submit', formSubmitHandler);
-
-
-//открываем PopUp
-openEditButton.addEventListener('click', () => {
-    // formToggle();
-    popupName.value = profileName.textContent;
-    popupAbout.value = profileAbout.textContent;
-    openCommonPopups (popupTitle);
-    console.log(popupTitle);
-})
-
-// закрываем PopUp
-closePopupButton.addEventListener('click', () => {
-    // formToggle();
-    closeCommonPopups (popupTitle);
-})
-
-//открываем popup добавления картинки
-openAddButton.addEventListener('click', function() {
-    openCommonPopups (popupAddPhoto);
-    console.log(popupAddPhoto);
-})
+popupForm.addEventListener('submit', formSubmitHandler);
