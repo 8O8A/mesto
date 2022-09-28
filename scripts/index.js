@@ -27,8 +27,8 @@ const bigImageFigcaption = popupImage.querySelector('.popup__image-title');
 
 //кнопки (крестики) закрытия popup'ов
 const buttonCloseEdit = popupEditProfile.querySelector('.popup__close-button'); //закрыть popup  "Профиль"
-const buttonCloseAdd = popupAddPhoto.querySelector('.popup__close_add_photo'); //закрыть popup "Добавить фотографию"
-const buttonClosePhoto = popupImage.querySelector('.popup__close-image');//закрыть Popup с картинкой
+const buttonCloseAdd = popupAddPhoto.querySelector('.popup__close-button_add-photo'); //закрыть popup "Добавить фотографию"
+const buttonClosePhoto = popupImage.querySelector('.popup__close-button-image');//закрыть Popup с картинкой
 
 //массив фотографий
 const initialCards = [
