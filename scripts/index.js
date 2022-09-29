@@ -30,51 +30,24 @@ const buttonCloseEdit = popupEditProfile.querySelector('.popup__close-button'); 
 const buttonCloseAdd = popupAddPhoto.querySelector('.popup__close-button_add-photo'); //закрыть popup "Добавить фотографию"
 const buttonClosePhoto = popupImage.querySelector('.popup__close-button-image');//закрыть Popup с картинкой
 
-//массив фотографий
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 const galleryElements = document.querySelector('.gallery__elements'); //массив фотографий
-const imageTemplate = document.querySelector('.gallery-template').content; //шаблон карточки
+const cardTemplate = document.querySelector('.gallery-template').content; //шаблон карточки
 
 
 //Функция открытия popup (добавляем класс открытия к popup'y)
-const openPopup = function(popup) {
+const openPopup = function (popup) {
     popup.classList.add('popup_opened');
 }
 
 //Функция закрытия popup (удаляем класс открытия у popup'а)
-const closePopup = function(popup) {
+const closePopup = function (popup) {
     popup.classList.remove('popup_opened');
 }
 
 
 //функция отправки данных из popup'a в профиль
-function formSubmitHandler(evt) {
+function profileFormSubmitHandler(evt) {
     evt.preventDefault();                                  //Эта строчка отменяет стандартную отправку формы.
     profileTitleName.textContent = popupTitleName.value;   // отправляем данные из popup в профиль
     profileTitleAbout.textContent = popupTitleAbout.value; // отправляем данные из popup в профиль
@@ -82,7 +55,7 @@ function formSubmitHandler(evt) {
 }
 
 //отменяем обновление страницы при отправке (submit) данных из формы popup'a Профиля
-formEditProfile.addEventListener('submit', formSubmitHandler);
+formEditProfile.addEventListener('submit', profileFormSubmitHandler);
 
 //открываем popup Профиля с внесением данных из профиля в форму
 profileButtonOpenEdit.addEventListener('click', () => {
@@ -91,34 +64,43 @@ profileButtonOpenEdit.addEventListener('click', () => {
     openPopup(popupEditProfile);
 });
 
+// //открываем popup добавления фотографии
+// buttonAddPhoto.addEventListener('click', () => {
+//     popupAddPhotoName.value = '';  //очищаем поле ввода Название
+//     popupAddPhotoLink.value = '';  //очищаем поле ввода Ссылка на картинку
+//     popupAddPhotoName.placeholder = 'Название';
+//     popupAddPhotoLink.placeholder = 'Ссылка на картинку';
+//     openPopup(popupAddPhoto);
+// });
+
+const formPhoto = document.querySelector('.popup__form-photo'); //форма попапа добавления фотографии
 //открываем popup добавления фотографии
 buttonAddPhoto.addEventListener('click', () => {
-    popupAddPhotoName.value = '';  //очищаем поле ввода Название
-    popupAddPhotoLink.value = '';  //очищаем поле ввода Ссылка на картинку
-    popupAddPhotoName.placeholder = 'Название';
-    popupAddPhotoLink.placeholder = 'Ссылка на картинку';
+    formPhoto.reset()                                   //очишаем форму добавления фотографии
     openPopup(popupAddPhoto);
-    });
+});
+
+
 
 //закрываем popup Профиля
-buttonCloseEdit.addEventListener('click', function() {
+buttonCloseEdit.addEventListener('click', function () {
     closePopup(popupEditProfile);
 })
 
 //закрываем popup добавления фотографии
-buttonCloseAdd.addEventListener('click', function() {
+buttonCloseAdd.addEventListener('click', function () {
     closePopup(popupAddPhoto);
 })
 
 //закрываем Popup с картинкой
-buttonClosePhoto.addEventListener('click', function() {
+buttonClosePhoto.addEventListener('click', function () {
     closePopup(popupImage)
 })
 
 
 //функция создания карточки
-function renderItems(cardImage) {
-    const newGalleryCard = imageTemplate.querySelector('.gallery__card').cloneNode(true);
+function createCard(cardImage) {
+    const newGalleryCard = cardTemplate.querySelector('.gallery__card').cloneNode(true);
     const galleryImage = newGalleryCard.querySelector('.gallery__image');
     galleryImage.src = cardImage.link;
     newGalleryCard.querySelector('.gallery__title').textContent = cardImage.name;
@@ -126,7 +108,7 @@ function renderItems(cardImage) {
     galleryImage.addEventListener('click', function () {  //открываем просмотр фотографии при клике на неё
         openBigImage(newGalleryCard)
     });
-    setButtonListener(newGalleryCard);
+    setCardButtonListeners(newGalleryCard);
     return newGalleryCard; //card
 
 }
@@ -144,7 +126,7 @@ function openBigImage(newGalleryCard) {
 
 //вставляем новую фотографию в начало альбома
 const renderCard = (newGalleryCard) => {
-    galleryElements.prepend(renderItems(newGalleryCard))
+    galleryElements.prepend(createCard(newGalleryCard))
 }
 
 //Добавляем новую карточку (фотографию) в альбом
@@ -167,7 +149,7 @@ initialCards.reverse().forEach((newGalleryCard) => {
 })
 
 //проверяем нажатие кнопок на карточке
-function setButtonListener(newGalleryCard) {
+function setCardButtonListeners(newGalleryCard) {
     //кнопка лайка
     const buttonLike = newGalleryCard.querySelector('.gallery__like-button');
     buttonLike.addEventListener('click', likeButton);

@@ -10,6 +10,8 @@
     <meta name="author" content="808A">
     <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
+    <script defer src="./scripts/cards.js"></script>
+    <script defer src="./scripts/index.js"></script>
 </head>
 
 <body class="body">
@@ -45,16 +47,16 @@
             <div class="popup popup_type-edit-profile">
                 <div class="popup__container">
                     <button class="popup__close-button hover-element" type="button" aria-label="закрыть"></button>
-                    <form class="popup__form" name="popupForm">
+                    <form class="popup__form" name="popup-form">
                         <h2 class="popup__form-title">Редактировать профиль</h2>
                         <fieldset class="popup__form-table">
                             <label class="popup__input">
                                 <input class="popup__input-field popup__input-field_type_name" type="text"
-                                    value="Жак-Ив Кусто" name="popupName">
+                                    placeholder="Имя" name="popup-name">
                             </label>
                             <label class="popup__input">
                                 <input class="popup__input-field popup__input-field_type_about" type="text"
-                                    value="Исследователь океана" name="popupAbout">
+                                    placeholder="О себе" name="popup-about">
                             </label>
                         </fieldset>
                         <button class="popup__save-button" type="submit">Сохранить</button>
@@ -67,16 +69,16 @@
                 <div class="popup__container">
                     <button class="popup__close-button popup__close-button_add-photo hover-element" type="button"
                         aria-label="закрыть"></button>
-                    <form class="popup__form" name="popupForm">
+                    <form class="popup__form popup__form-photo" name="popup-form">
                         <h2 class="popup__form-title">Новое место</h2>
                         <fieldset class="popup__form-table">
                             <label class="popup__input">
                                 <input class="popup__input-field popup__input-field_type_card-name"
-                                    placeholder="Название" type="text" value name="popupCardName">
+                                    placeholder="Название" type="text" name="popup-card-name" required>
                             </label>
                             <label class="popup__input">
                                 <input class="popup__input-field popup__input-field_type_card-link"
-                                    placeholder="Ссылка на картинку" type="url" value name="popupCardLink">
+                                    placeholder="Ссылка на картинку" type="url" name="popup-card-link" required>
                             </label>
                         </fieldset>
                         <button class="popup__save-button add-photo" type="submit">Создать</button>
@@ -85,7 +87,7 @@
             </div>
 
             <!-- Popup с картинкой -->
-            <div class="popup popup_type_image">
+            <div class="popup popup_type_image popup_opacity">
                 <div class="popup__container-image">
                     <figure class="popup__big-image">
                         <button class="popup__close-button popup__close-button-image hover-element" type="button"
@@ -111,7 +113,6 @@
             </li>
         </template>
     </div>
-    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
