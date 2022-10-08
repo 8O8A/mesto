@@ -10,8 +10,10 @@
     <meta name="author" content="808A">
     <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
+    <script defer src="./scripts/validate.js"></script>
     <script defer src="./scripts/cards.js"></script>
     <script defer src="./scripts/index.js"></script>
+    
 </head>
 
 <body class="body">
@@ -43,45 +45,51 @@
         </footer>
         <section class="popups">
 
-            <!-- форма редактирования профиля -->
+            <!-- попап "Редактировать профиль" -->
             <div class="popup popup_type-edit-profile">
                 <div class="popup__container">
                     <button class="popup__close-button hover-element" type="button" aria-label="закрыть"></button>
-                    <form class="popup__form" name="popup-form">
+                    <form class="popup__form" name="form-profile" id="form-profile" novalidate>
                         <h2 class="popup__form-title">Редактировать профиль</h2>
                         <fieldset class="popup__form-table">
                             <label class="popup__input">
-                                <input class="popup__input-field popup__input-field_type_name" type="text"
-                                    placeholder="Имя" name="popup-name">
+                                <input class="popup__input-field popup__input-field_type_name" id="name-input"
+                                    type="text" placeholder="Имя" name="popup-name" minlength="2" maxlength="40"
+                                    required>
+                                <span class="popup__input-error name-input-error"></span>
                             </label>
                             <label class="popup__input">
-                                <input class="popup__input-field popup__input-field_type_about" type="text"
-                                    placeholder="О себе" name="popup-about">
+                                <input class="popup__input-field popup__input-field_type_about" id="about-input"
+                                    type="text" placeholder="О себе" name="popup-about" minlength="2" maxlength="200"
+                                    required>
+                                <span class="popup__input-error about-input-error"></span>
                             </label>
                         </fieldset>
-                        <button class="popup__save-button" type="submit">Сохранить</button>
+                        <button class="popup__save-button" type="submit" id="submit">Сохранить</button>
                     </form>
                 </div>
             </div>
 
-            <!-- форма добавления фотографии -->
+            <!-- попап "Новое место" -->
             <div class="popup popup_type-add-photo">
                 <div class="popup__container">
                     <button class="popup__close-button popup__close-button_add-photo hover-element" type="button"
                         aria-label="закрыть"></button>
-                    <form class="popup__form popup__form-photo" name="popup-form">
+                    <form class="popup__form popup__form-photo" name="form-photo" id="form-place" novalidate>
                         <h2 class="popup__form-title">Новое место</h2>
                         <fieldset class="popup__form-table">
                             <label class="popup__input">
                                 <input class="popup__input-field popup__input-field_type_card-name"
-                                    placeholder="Название" type="text" name="popup-card-name" required>
+                                    placeholder="Название" type="text" name="popup-card-name" id="place-input" minlength="2" maxlength="30" required>
+                                    <span class="popup__input-error place-input-error"></span>
                             </label>
                             <label class="popup__input">
                                 <input class="popup__input-field popup__input-field_type_card-link"
-                                    placeholder="Ссылка на картинку" type="url" name="popup-card-link" required>
+                                    placeholder="Ссылка на картинку" type="url" name="popup-card-link" id="link-input" required>
+                                    <span class="popup__input-error link-input-error"></span>
                             </label>
                         </fieldset>
-                        <button class="popup__save-button add-photo" type="submit">Создать</button>
+                        <button class="popup__save-button add-photo" type="submit" id="submit-place">Создать</button>
                     </form>
                 </div>
             </div>
