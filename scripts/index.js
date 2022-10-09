@@ -38,11 +38,34 @@ const cardTemplate = document.querySelector('.gallery-template').content; //ша
 //Функция открытия popup (добавляем класс открытия к popup'y)
 const openPopup = function (popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape); //слушатель нажатия на Escape
+    document.addEventListener('click', closeByOverlay);  //слушатель нажатия на оверлей
 }
 
 //Функция закрытия popup (удаляем класс открытия у popup'а)
 const closePopup = function (popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape); // удаляем слушатель на нажатия Escape
+    document.removeEventListener('click', closeByOverlay);  // удаляем слушатель нажатия на оверлей
+}
+
+///////////////**** функция закрытия попапа кнопкой Escape ****////////////////////
+function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened'); //находим открытый в данный момент попап
+        closePopup(openedPopup)   //закрываем открытый в данный момент попап
+    }
+}
+
+///////////////**** функция закрытия попапа по клику на оверлей ****///////////////
+function closeByOverlay () {
+    const openedPopup = document.querySelector('.popup_opened'); //находим открытый в данный момент попап
+    openedPopup.addEventListener('click', (evt) => {
+         // закрываем только тогда, когда надо, т.е. только при том клике, которые происходит по нужному элементу
+        if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+            closePopup(openedPopup)
+        }
+    })
 }
 
 
@@ -79,8 +102,6 @@ buttonAddPhoto.addEventListener('click', () => {
     formPhoto.reset()                                   //очишаем форму добавления фотографии
     openPopup(popupAddPhoto);
 });
-
-
 
 //закрываем popup Профиля
 buttonCloseEdit.addEventListener('click', function () {
