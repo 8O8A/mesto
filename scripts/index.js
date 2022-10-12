@@ -39,15 +39,17 @@ const cardTemplate = document.querySelector('.gallery-template').content; //ша
 const openPopup = function (popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape); //слушатель нажатия на Escape
-    document.addEventListener('click', closeByСlickOverlay);  //слушатель нажатия на оверлей
+    document.addEventListener('mousedown', closeByСlickOverlay);  //слушатель нажатия на оверлей
 }
 
 //Функция закрытия popup (удаляем класс открытия у popup'а)
 const closePopup = function (popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEscape); // удаляем слушатель на нажатия Escape
-    document.removeEventListener('click', closeByСlickOverlay);  // удаляем слушатель нажатия на оверлей
+    document.removeEventListener('mousedown', closeByСlickOverlay);  // удаляем слушатель нажатия на оверлей
 }
+
+
 
 ///////////////**** функция закрытия попапа кнопкой Escape ****////////////////////
 function closeByEscape(evt) {
@@ -57,25 +59,26 @@ function closeByEscape(evt) {
     }
 }
 
-///////////////**** функция закрытия попапа по клику на оверлей ****///////////////
-function closeByСlickOverlay () {
-    const openedPopup = document.querySelector('.popup_opened'); //находим открытый в данный момент попап
-    openedPopup.addEventListener('click', (evt) => {
-         // закрываем только тогда, когда надо, т.е. только при том клике, которые происходит по нужному элементу
-        if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-            closePopup(openedPopup)
-        }
-    })
-}
+// ///////////////**** функция закрытия попапа по клику на оверлей ****///////////////
+function closeByСlickOverlay (evt) {
+    if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+      closePopup(evt.target);
+    }
+  }
 
 
- //очишаем форму добавления фотографии
+//////очишаем форму добавления фотографии////////
 const formPhoto = document.querySelector('.popup__form-photo'); //форма попапа добавления фотографии
+//кнопка отправки формы
+const buttonElement = formPhoto.querySelector('.popup__save-button');
 //открываем popup добавления фотографии
 buttonAddPhoto.addEventListener('click', () => {
     formPhoto.reset()                                          //очишаем форму добавления фотографии
     openPopup(popupAddPhoto);
-    setEventListeners(formPhoto);    //добавляем обработчик полей формы, чтобы кнопка при открытии была неактивной если поля не прошли проверку
+    if (hasInvalidInput) {                    //проверяем поля ввода на валидность, если не валидны, но отключаем кнопку "Создать"
+        buttonElement.classList.add('popup__save-button_disabled');
+        buttonElement.setAttribute('disabled', true);
+    }
 });
 
 
@@ -132,11 +135,11 @@ function createCard(cardImage) {
         openBigImage(newGalleryCard)
     });
     setCardButtonListeners(newGalleryCard);
-    return newGalleryCard; //card
+    return newGalleryCard;
 
 }
 
-//открываем Popup с картинкой
+// //открываем Popup с картинкой
 function openBigImage(newGalleryCard) {
     const bigImage = newGalleryCard.querySelector('.gallery__image');
     popupBigImage.src = bigImage.src;
@@ -181,7 +184,7 @@ function setCardButtonListeners(newGalleryCard) {
     buttonDelete.addEventListener('click', deleteCard);
 }
 
-//функция для установки лайка фотографии
+//функция для установки/удаления лайка фотографии
 function likeButton(evt) {
     const like = evt.target.closest('.gallery__like-button');
     like.classList.toggle('gallery__like-button_active');
