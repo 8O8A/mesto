@@ -1,13 +1,4 @@
-const enableValidation = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input-field',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_disabled',
-    inputErrorClass: 'popup__input-error',
-    errorClass: 'popup__input-error_active'
-};
-
-class FormValidator {
+export default class FormValidator {
     constructor(config, formSelector) {
         this._formSelector = formSelector //форма попапа
         this._inputSelector = config.inputSelector; //поле для ввода
@@ -57,11 +48,17 @@ class FormValidator {
         });
     };
 
+    //блокируем кнопу формы добавления фотографии
+    blockButton () {
+        this._buttonElement.classList.add(this._inactiveButtonClass);
+        this._buttonElement.disabled = true;
+    }
+
+
     // метод отключает и включает кнопку
     _toggleButtonState() {
-        if (this._hasInvalidInput(this._inputList)) {
-            this._buttonElement.classList.add(this._inactiveButtonClass);
-            this._buttonElement.disabled = true;
+        if (this._hasInvalidInput()) {
+            this.blockButton ()
         } else {
             this._buttonElement.classList.remove(this._inactiveButtonClass);
             this._buttonElement.disabled = false;
@@ -70,11 +67,11 @@ class FormValidator {
 
     // метод Добавление обработчиков всем полям формы
     _setEventListeners() {
-        this._toggleButtonState(this._inputList, this._buttonElement);
+        this._toggleButtonState();
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement);
-                this._toggleButtonState(this._inputList, this._buttonElement);
+                this._toggleButtonState();
             });
         });
     };
@@ -85,9 +82,7 @@ class FormValidator {
         });
     };
 
-    enableValidation = () => {
+    validationSettings = () => {
         this._setEventListeners();
     };
 };
-
-export {enableValidation, FormValidator};

@@ -1,5 +1,42 @@
-import {initialCards, Card} from './Card.js'
-import {enableValidation, FormValidator} from './FormValidator.js'
+import Card from './Card.js'
+import FormValidator from './FormValidator.js'
+
+//массив фотографий
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+const validationSettings = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input-field',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_disabled',
+    inputErrorClass: 'popup__input-error',
+    errorClass: 'popup__input-error_active'
+};
 
 //Окно "Редактировать профиль"
 const profileTitleName = document.querySelector('.profile__title'); //имя пользователя в профиле
@@ -10,7 +47,7 @@ const profileButtonOpenEdit = document.querySelector('.profile__edit-button'); /
 //Окно "Добавления фотографии"
 const popupAddPhoto = document.querySelector('.popup_type-add-photo'); //popup Добавления фотографии
 const buttonAddPhoto = document.querySelector('.profile__add-button'); //кнопка "Добавить фотографию"
-const buttonSavePhoto = popupAddPhoto.querySelector('.add-photo') //кнопка "Создать"
+// const buttonSavePhoto = popupAddPhoto.querySelector('.add-photo') //кнопка "Создать" формы добавления фотографии
 
 //Форма popup'a Профиля
 const popupEditProfile = document.querySelector('.popup_type-edit-profile'); //popup Профиля
@@ -26,34 +63,34 @@ const popupAddPhotoLink = formAddPhoto.querySelector('.popup__input-field_type_c
 //popup просмотра фотографии
 const popupImage = document.querySelector('.popup_type_image');
 const popupBigImage = popupImage.querySelector('.popup__image');
-const bigImageFigcaption = popupImage.querySelector('.popup__image-title');
+const imageBigFigcaption = popupImage.querySelector('.popup__image-title');
 
 //кнопки (крестики) закрытия popup'ов
-const buttonCloseEdit = popupEditProfile.querySelector('.popup__close-button'); //закрыть popup  "Профиль"
-const buttonCloseAdd = popupAddPhoto.querySelector('.popup__close-button_add-photo'); //закрыть popup "Добавить фотографию"
-const buttonClosePhoto = popupImage.querySelector('.popup__close-button-image');//закрыть Popup с картинкой
+// const buttonCloseEdit = popupEditProfile.querySelector('.popup__close-button'); //закрыть popup  "Профиль"
+// const buttonCloseAdd = popupAddPhoto.querySelector('.popup__close-button_add-photo'); //закрыть popup "Добавить фотографию"
+// const buttonClosePhoto = popupImage.querySelector('.popup__close-button-image');//закрыть Popup с картинкой
 
 //массив фотографий
 const galleryElements = document.querySelector('.gallery__elements');
 
 
-const editProfileVadidation = new FormValidator(enableValidation, formEditProfile); //проверка формы профиля
-const editAddCardValidation = new FormValidator(enableValidation, formAddPhoto); //проверка формы добавления фотографии
-editProfileVadidation.enableValidation();
-editAddCardValidation.enableValidation();
+const profileEditValidation = new FormValidator(validationSettings, formEditProfile);
+const cardAddEditValidation = new FormValidator(validationSettings, formAddPhoto);
+profileEditValidation.validationSettings(); //проверка формы профиля
+cardAddEditValidation.validationSettings(); //проверка формы добавления фотографии
 
 //Функция открытия popup (добавляем класс открытия к popup'y)
 const openPopup = function (popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape); //слушатель нажатия на Escape
-    document.addEventListener('mousedown', closeByСlickOverlay);  //слушатель нажатия на оверлей
+    // document.addEventListener('mousedown', closeByClickOverlay);  //слушатель нажатия на оверлей
 }
 
 //Функция закрытия popup (удаляем класс открытия у popup'а)
 const closePopup = function (popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEscape); // удаляем слушатель на нажатия Escape
-    document.removeEventListener('mousedown', closeByСlickOverlay);  // удаляем слушатель нажатия на оверлей
+    // document.removeEventListener('mousedown', closeByClickOverlay);  // удаляем слушатель нажатия на оверлей
 }
 
 
@@ -66,23 +103,22 @@ function closeByEscape(evt) {
 }
 
 // ///////////////**** функция закрытия попапа по клику на оверлей ****///////////////
-function closeByСlickOverlay (evt) {
-    if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-      closePopup(evt.target);
-    }
-  }
+// function closeByClickOverlay (evt) {
+//     if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+//       closePopup(evt.target);
+//     }
+//   }
+
 
 
 
 // //////очишаем форму добавления фотографии////////
 const formPhoto = document.querySelector('.popup__form-photo');         //форма попапа добавления фотографии
-const buttonElement = formPhoto.querySelector('.popup__save-button');   //кнопка отправки формы
 //открываем popup добавления фотографии
 buttonAddPhoto.addEventListener('click', () => {
     formPhoto.reset()                                          //очишаем форму добавления фотографии
     openPopup(popupAddPhoto);
-    buttonElement.classList.add('popup__save-button_disabled');
-    buttonElement.setAttribute('disabled', true);
+    cardAddEditValidation.blockButton();   //блокируем кнопу формы добавления фотографии
     }
 );
 
@@ -103,32 +139,41 @@ formEditProfile.addEventListener('submit', profileFormSubmitHandler);
 profileButtonOpenEdit.addEventListener('click', () => {
     popupTitleName.value = profileTitleName.textContent;
     popupTitleAbout.value = profileTitleAbout.textContent;
-    editProfileVadidation.resetValidation();
+    profileEditValidation.resetValidation();
     openPopup(popupEditProfile);
 });
 
 
 //открываем popup добавления фотографии
 buttonAddPhoto.addEventListener('click', () => {
-    editAddCardValidation.resetValidation();
+    cardAddEditValidation.resetValidation();
     openPopup(popupAddPhoto);
 });
 
+//Устанавливаем слушатель на каждый попап и созадём функцию закрытия попапа по клику на оверлей
+const popupList = Array.from(document.querySelectorAll('.popup'));
+popupList.forEach(popup => {
+  popup.addEventListener('mousedown', (evt) => {
+    if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup);
+    }
+  });
+});
+///////эти функции больше не нужны///////
+// //закрываем popup Профиля
+// buttonCloseEdit.addEventListener('click', function () {
+//     closePopup(popupEditProfile);
+// })
 
-//закрываем popup Профиля
-buttonCloseEdit.addEventListener('click', function () {
-    closePopup(popupEditProfile);
-})
+// //закрываем popup добавления фотографии
+// buttonCloseAdd.addEventListener('click', function () {
+//     closePopup(popupAddPhoto);
+// })
 
-//закрываем popup добавления фотографии
-buttonCloseAdd.addEventListener('click', function () {
-    closePopup(popupAddPhoto);
-})
-
-//закрываем Popup с картинкой
-buttonClosePhoto.addEventListener('click', function () {
-    closePopup(popupImage)
-})
+// //закрываем Popup с картинкой
+// buttonClosePhoto.addEventListener('click', function () {
+//     closePopup(popupImage)
+// })
 
 
 //Добавляем новую карточку (фотографию) в альбом +
@@ -154,7 +199,7 @@ function createCard(item) {
 function openBigImagePopup (name, link) {
     popupBigImage.src = link;
     popupBigImage.alt = name;
-    bigImageFigcaption.textContent = name;
+    imageBigFigcaption.textContent = name;
     openPopup(popupImage);
 }
 
@@ -162,6 +207,6 @@ formAddPhoto.addEventListener('submit', handleSubmit);
 
 
 //new ---Добавление фотографий из массива
-initialCards.reverse().forEach((item) => {
-    galleryElements.prepend(createCard(item));
+initialCards.forEach((item) => {
+    galleryElements.append(createCard(item));
 });
